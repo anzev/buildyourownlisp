@@ -69,8 +69,8 @@ int main(int argc, char** argv) {
         // Parse user input
         mpc_result_t r;
         if (mpc_parse("<stdin>", input, Lispy, &r)) {
-            mpc_ast_t* ast = r.output;
-            printf("= %.2f\n", evaluate(ast));
+            printf("= %.2f\n", evaluate(r.output));
+            mpc_ast_delete(r.output);
         } else {
             mpc_err_print(r.error);
             mpc_err_delete(r.error);
